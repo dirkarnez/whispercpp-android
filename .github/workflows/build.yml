@@ -45,6 +45,6 @@ jobs:
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "whisper.cpp/examples/whisper.android/app/build/outputs/apk/release/app-release-unsigned.apk"
+          artifacts: "whisper.cpp/examples/whisper.android/app/build/outputs/apk/release/app-release.apk"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
