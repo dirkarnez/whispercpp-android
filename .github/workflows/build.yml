@@ -1,17 +1,27 @@
-  android:
-    runs-on: ubuntu-latest
+name: android-gradle-prebuilt-release-actions-workflow
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'c*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    env:
+      appName: whisper.cpp.android
+      tagName: v1.5.4
+      targetZip: whisper.cpp.android-${{ github.ref_name }}.zip
     steps:
       - name: Clone
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          path: whisper
-
-      - name: Clone
-        uses: actions/checkout@v3
-        with:
-          repository: ggerganov/ggml
-          path: ggml
+          repository: ggerganov/whisper.cpp
+          path: whisper.cpp
+          submodules: true
+          ref: ${{ env.tagName }}
 
       - name: Install Java
         uses: actions/setup-java@v3
@@ -20,15 +30,18 @@
           java-version: 17
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v2.0.10
 
       - name: Build
         run: |
-          cd whisper/examples/whisper.android
+          cd whisper.cpp/examples/whisper.android
           ./gradlew assembleRelease --no-daemon
-
-      - name: Build with external ggml
-        run: |
-          export PATH_TO_GGML=$PWD/ggml
-          cd whisper/examples/whisper.android
-          ./gradlew assembleRelease --no-daemon -PGGML_HOME=$PATH_TO_GGML
+          
+      - run: cd whisper.cpp/examples/whisper.android/app/build/outputs/apk && ls -R
+      
+      - name: Release prebuilt
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "whisper.cpp/examples/whisper.android/app/build/outputs/apk/release/app-release-unsigned.apk"
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
