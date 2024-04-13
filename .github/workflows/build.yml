@@ -35,6 +35,7 @@ jobs:
       - run: |
           cd whisper.cpp/examples/whisper.android/app/src/main/assets
           mkdir models
+          cd models
           curl https://huggingface.co/safecantonese/ggml-models/resolve/main/whisper-small-yue-hk.bin?download=true -L -O -J 
           
       - run: |
