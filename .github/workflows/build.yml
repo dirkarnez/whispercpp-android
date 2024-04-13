@@ -26,6 +26,26 @@ jobs:
           submodules: true
           ref: ${{ env.tagName }}
 
+      - run: |
+          cd whisper.cpp/examples/whisper.android/app/src/main
+          mkdir assets
+          
+      - run: |
+          cd whisper.cpp/examples/whisper.android/app/src/main/assets
+          mkdir models
+          curl https://huggingface.co/safecantonese/ggml-models/resolve/main/whisper-small-yue-hk.bin?download=true -L -O -J 
+          
+      - run: |
+          cd whisper.cpp/examples/whisper.android/app/src/main/assets
+          mkdir samples
+          
+      - run: |
+          cp elderly-converted-16khz.wav whisper.cpp/examples/whisper.android/app/src/main/assets/samples/
+
+      - run: |
+          cd whisper.cpp/examples/whisper.android/app/src/main/assets
+          ls -R
+          
       - name: Install Java
         uses: actions/setup-java@v3
         with:
