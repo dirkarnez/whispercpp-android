@@ -18,6 +18,8 @@ jobs:
       tagName: v1.5.4
       targetZip: whisper.cpp.android-${{ github.ref_name }}.zip
     steps:
+      - uses: actions/checkout@v4
+      
       - name: Clone
         uses: actions/checkout@v4
         with:
