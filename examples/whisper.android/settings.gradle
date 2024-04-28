@@ -1,0 +1,3 @@
+rootProject.name = "WhisperCppDemo"
+include ':app'
+include ':lib'
