@@ -27,10 +27,6 @@ jobs:
           path: whisper.cpp
           submodules: true
           ref: ${{ env.tagName }}
-
-      - run: |
-          cd whisper.cpp/examples/whisper.android.java/app/src/main
-          mkdir assets
           
       - run: |
           cd whisper.cpp/examples/whisper.android.java/app/src/main/assets
