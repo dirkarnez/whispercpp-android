@@ -29,24 +29,24 @@ jobs:
           ref: ${{ env.tagName }}
 
       - run: |
-          cd whisper.cpp/examples/whisper.android/app/src/main
+          cd whisper.cpp/examples/whisper.android.java/app/src/main
           mkdir assets
           
       - run: |
-          cd whisper.cpp/examples/whisper.android/app/src/main/assets
+          cd whisper.cpp/examples/whisper.android.java/app/src/main/assets
           mkdir models
           cd models
           curl https://huggingface.co/safecantonese/ggml-models/resolve/main/whisper-small-yue-hk.bin?download=true -L -O -J 
           
       - run: |
-          cd whisper.cpp/examples/whisper.android/app/src/main/assets
+          cd whisper.cpp/examples/whisper.android.java/app/src/main/assets
           mkdir samples
           
       - run: |
-          cp elderly-converted-16khz.wav whisper.cpp/examples/whisper.android/app/src/main/assets/samples/
+          cp elderly-converted-16khz.wav whisper.cpp/examples/whisper.android.java/app/src/main/assets/samples/
 
       - run: |
-          cd whisper.cpp/examples/whisper.android/app/src/main/assets
+          cd whisper.cpp/examples/whisper.android.java/app/src/main/assets
           ls -R
           
       - name: Install Java
@@ -60,14 +60,14 @@ jobs:
 
       - name: Build
         run: |
-          cd whisper.cpp/examples/whisper.android
+          cd whisper.cpp/examples/whisper.android.java
           ./gradlew assembleRelease --no-daemon
           
-      - run: cd whisper.cpp/examples/whisper.android/app/build/outputs/apk && ls -R
+      - run: cd whisper.cpp/examples/whisper.android.java/app/build/outputs/apk && ls -R
       
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "whisper.cpp/examples/whisper.android/app/build/outputs/apk/release/app-release.apk"
+          artifacts: "whisper.cpp/examples/whisper.android.java/app/build/outputs/apk/release/app-release.apk"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
