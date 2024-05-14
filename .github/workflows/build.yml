@@ -18,15 +18,12 @@ jobs:
       tagName: v1.5.4
       targetZip: whisper.cpp.android.java-${{ github.ref_name }}.zip
     steps:
-      - uses: actions/checkout@v4
+      # - uses: actions/checkout@v4
       
       - name: Clone
         uses: actions/checkout@v4
         with:
-          repository: ggerganov/whisper.cpp
           path: whisper.cpp
-          submodules: true
-          ref: ${{ env.tagName }}
           
       - run: |
           cd whisper.cpp/examples/whisper.android.java/app/src/main/assets
