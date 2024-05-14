@@ -8,8 +8,7 @@ android {
 
   defaultConfig {
     applicationId "com.litongjava.whisper.android.java"
-    minSdkVersion 21
-    targetSdkVersion 30
+    minSdkVersion 26
     versionCode 1
     versionName "1.0"
 

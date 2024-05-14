@@ -7,6 +7,7 @@
 .vscode/
 .DS_Store
 .vimspector.json
+/CMakeSettings.json
 
 build/
 build-coreml/
@@ -60,3 +61,6 @@ cmake-build-debug/
 .cxx/
 .gradle/
 local.properties
+
+
+examples/whisper.android.java/app/src/main/assets/models/*

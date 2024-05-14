@@ -5,12 +5,11 @@ plugins {
 
 android {
     namespace 'com.whispercpp'
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdk 26
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 

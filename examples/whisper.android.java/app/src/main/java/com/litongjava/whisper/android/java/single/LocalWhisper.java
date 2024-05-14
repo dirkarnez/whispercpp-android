@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutionException;
 public enum LocalWhisper {
   INSTANCE;
 
-  public static final String modelFilePath = "models/ggml-tiny.bin";
+  public static final String modelFilePath = "models/whisper-small-yue-hk.bin";
   private WhisperContext whisperContext;
 
   @RequiresApi(api = Build.VERSION_CODES.O)

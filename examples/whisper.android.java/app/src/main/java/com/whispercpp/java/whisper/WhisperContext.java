@@ -61,6 +61,7 @@ public class WhisperContext {
         if (ptr == 0L) {
           throw new IllegalStateException();
         }
+
         int numThreads = WhisperCpuConfig.getPreferredThreadCount();
         Log.d(LOG_TAG, "Selecting " + numThreads + " threads");
 
